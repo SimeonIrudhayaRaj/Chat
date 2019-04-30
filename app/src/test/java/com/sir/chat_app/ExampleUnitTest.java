@@ -1,4 +1,4 @@
-package com.sir.chat;
+package com.sir.chat_app;
 
 import org.junit.Test;
 

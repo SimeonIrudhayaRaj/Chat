@@ -1,4 +1,4 @@
-package com.sir.chat;
+package com.sir.chat_app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.sir.chat", appContext.getPackageName());
+        assertEquals("com.sir.chat_app", appContext.getPackageName());
     }
 }
