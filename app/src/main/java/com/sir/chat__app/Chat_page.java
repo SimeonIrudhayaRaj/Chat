@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -36,7 +38,24 @@ public class Chat_page extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-int i=0;
+    public boolean isOnline(Context context)
+    {
+        boolean isOnline = false;
+        try
+        {
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getActiveNetworkInfo();
+            //should check null because in airplane mode it will be null
+            isOnline = (netInfo != null && netInfo.isConnected());
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return isOnline;
+    }
+
+    int i=0;
 void add_img(){
 
 
@@ -188,7 +207,11 @@ void add_msg(){
 }
     void add()
     {
+        if(!isOnline(getActivity()))
+        {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame,new internet_check()).commit();
 
+        }
         if(i%5==0)
         {
             add_img();
